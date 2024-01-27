@@ -11,7 +11,8 @@ public class CoverFoxAddressDetailsPage
 	@FindBy(xpath="(//input[@type='number'])[1]")private WebElement pinCodeField;
 	@FindBy(xpath="(//input[@type='number'])[2]")private WebElement mobNumField;
 	@FindBy(xpath = "//div[text()='Continue']")private WebElement continueButton;
-	
+	@FindBy(xpath =  "//div[@class='error-ui']") private WebElement pincodeErrorMsg;
+	////div[@class='error-ui']
 	public CoverFoxAddressDetailsPage(WebDriver driver)
 	{
 		PageFactory.initElements(driver,this);
@@ -32,24 +33,21 @@ public class CoverFoxAddressDetailsPage
 		continueButton.click();
 	}
 	
+	public boolean errorMsg()
+	{
+		Reporter.log("Error msg is displaying");
+		boolean errormsgdisplay = pincodeErrorMsg.isDisplayed();
+		return errormsgdisplay;
+	}
+	public String getErrorMsg()
+	{
+		return pincodeErrorMsg.getText();
+	}
 	
 	
 	
 	
-//	
-//	public boolean errorMsg()
-//	{
-//		Reporter.log("Error msg is displaying");
-//		boolean errormsgdisplay = pincodeErrorMsg.isDisplayed();
-//		return errormsgdisplay;
-//	}
-//	public String getErrorMsg()
-//	{
-//		return pincodeErrorMsg.getText();
-//	}
-//	
-//	
-	
+
 	
 	
 	

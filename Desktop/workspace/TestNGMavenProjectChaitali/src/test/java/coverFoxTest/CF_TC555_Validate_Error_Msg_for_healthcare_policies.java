@@ -4,11 +4,14 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import coverFoxBase.Base;
 import coverFoxUsingTestNG.CoverFoxAddressDetailsPage;
@@ -69,27 +72,28 @@ public class CF_TC555_Validate_Error_Msg_for_healthcare_policies extends Base
 		addressDetails.enterPinCode(Utility.readDataFromProperty("pinCode"));
 		
 		Reporter.log("Enter",true);
-		addressDetails.enterMobNum(Utility.readDataFromProperty("MobNum"));
+		addressDetails.enterMobNum(Utility.readDataFromProperty("mobNum"));
 		
 		Reporter.log("Enter",true);
 		addressDetails.clickOnContinueButton();
 		Thread.sleep(1000);
     }  
 	
-//  @Test
-//  public void validatePincodeErrorMsg() throws InterruptedException, IOException
-//  {
-//	  Thread.sleep(1000);
-//	  //String actualerrorpincodemsg = addressDetails.getErrorMsg();
-//	  //String expectederrormsg="Please enter a valid pin1";
-//	  //SoftAssert s=new SoftAssert();
-//	  //s.assertEquals(actualerrorpincodemsg, expectederrormsg,"Error msg not match,TC is failed");
-//	  Thread.sleep(1000);
-//	  Assert.assertTrue(addressDetails.errorMsg()," Error msg didnot display");
-//	  Utility.takeScreenshot(driver, "TC555_Error");
-//	  //s.assertAll();
-//	  
-//  }
+	 @Test
+	  public void validatePincodeErrorMsg() throws InterruptedException, IOException
+	  {
+		  Thread.sleep(1000);
+		  String actualerrorpincodemsg = addressDetails.getErrorMsg();
+		  String expectederrormsg="Please enter a valid pin";
+		  SoftAssert s=new SoftAssert();
+		  s.assertEquals(actualerrorpincodemsg, expectederrormsg,"Error msg not match,TC is failed");
+//		  Thread.sleep(1000);
+//		  Assert.assertTrue(addressDetails.errorMsg()," Error msg didnot display");
+//		  Utility.takeScreenShot(driver, "TC555_Error");
+		  //s.assertAll();
+		  
+	  }
+
 
   @AfterMethod
   public void closeBrowser() throws InterruptedException
